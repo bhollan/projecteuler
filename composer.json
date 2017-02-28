@@ -1,0 +1,12 @@
+{
+    "name": "root/projecteuler",
+    "authors": [
+        {
+            "name": "Brian Holland",
+            "email": "beehollander@gmail.com"
+        }
+    ],
+    "require": {
+        "phpspec/phpspec": "^3.0"
+    }
+}
