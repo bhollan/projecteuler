@@ -9,7 +9,7 @@
 //namespace PrimeChecker;
 
 
-class Numerical
+class Primes
 {
     public $firstPrimes = [];
 

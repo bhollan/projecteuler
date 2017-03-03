@@ -6,9 +6,9 @@
  * Time: 08:16 AM
  */
 
-include ('../Numerical.php');
+include('../Primes.php');
 
-$p = new Numerical();
+$p = new Primes();
 
 $p->is_prime(44);
 
