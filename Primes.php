@@ -33,7 +33,7 @@ class Primes
             return false;
         }
         $i = 5;
-        while($i*$i < $candidate)
+        while($i*$i <= $candidate)
         {
             if($candidate%$i==0 OR $candidate%($i + 2)==0)
             {
@@ -48,6 +48,9 @@ class Primes
     {
 //        $this->firstPrimes = [2,3,5,7,11,13,17,19,23,29];
         $checkThisManyMoreNumbersForPrimes = 1000;
+//        echo("Checking for more primes...\n");
+//        echo("Prime count: ".count($this->firstPrimes)."\n");
+//        echo("Prime   max: ".max($this->firstPrimes)."\n");
         $i = count($this->firstPrimes);
         $stopCountOfNumbers = $i + $checkThisManyMoreNumbersForPrimes;
         for (; $i<=$stopCountOfNumbers; $i++)
@@ -70,12 +73,21 @@ class Primes
 
     public function getPrimeFactors($target)
     {
+        echo("Starting Prime Factorization of ".$target."\n");
         $primeFactors = [];
         $primes = $this->fillFirstPrimesToTarget($target);
+//        echo(var_dump($primes));
+        reset($primes);
 
         while(!$this->is_prime($target))
         {
+            //if $primes is at the end, generatePrimes
+//            if(!current($primes)){
+//                $this->generatePrimes();
+//            }
             //if this prime is a factor of target...
+//            echo(current($primes)."\n");
+//            echo("another time through the loop\n");
             if($target%current($primes) == 0)
             {
                 //add current to prime factors
