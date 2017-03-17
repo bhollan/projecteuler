@@ -13,11 +13,6 @@ class Primes
 {
     public $firstPrimes = [];
 
-    public function __construct()
-    {
-        $this->generatePrimes();
-    }
-
     public function is_prime($candidate)
     {
         if ($candidate <= 1)
@@ -44,68 +39,54 @@ class Primes
         return true;
     }
 
-    public function generatePrimes()
-    {
-//        $this->firstPrimes = [2,3,5,7,11,13,17,19,23,29];
-        $checkThisManyMoreNumbersForPrimes = 1000;
-//        echo("Checking for more primes...\n");
-//        echo("Prime count: ".count($this->firstPrimes)."\n");
-//        echo("Prime   max: ".max($this->firstPrimes)."\n");
-        $i = count($this->firstPrimes);
-        $stopCountOfNumbers = $i + $checkThisManyMoreNumbersForPrimes;
-        for (; $i<=$stopCountOfNumbers; $i++)
-        {
-            if($this->is_prime($i))
-            {
-                array_push($this->firstPrimes, $i);
-            }
-        }
-    }
+    public function next_prime($start)
 
-    public function fillFirstPrimesToTarget($target)
     {
-        while(end($this->firstPrimes) < sqrt($target))
-        {
-            $this->generatePrimes();
+        if($start == 2){
+            return 3;
         }
-        return $this->firstPrimes;
+        else if($this->is_prime($start)){
+            $candidate = $start + 2;
+        } elseif ($start%2==0){
+            $candidate = $start + 1;
+        } else {
+            $candidate = $start;
+        }
+        while (!$this->is_prime(($candidate)))
+        {
+//            echo("Candidate: ".$candidate."\n");
+            $candidate += 2;
+        }
+        return $candidate;
     }
 
     public function getPrimeFactors($target)
     {
         echo("Starting Prime Factorization of ".$target."\n");
         $primeFactors = [];
-        $primes = $this->fillFirstPrimesToTarget($target);
-//        echo(var_dump($primes));
-        reset($primes);
+        $prime = 2;
 
         while(!$this->is_prime($target))
         {
-            //if $primes is at the end, generatePrimes
-//            if(!current($primes)){
-//                $this->generatePrimes();
-//            }
             //if this prime is a factor of target...
-//            echo(current($primes)."\n");
-//            echo("another time through the loop\n");
-            if($target%current($primes) == 0)
+            while($target%$prime == 0)
             {
-                //add current to prime factors
-                array_push($primeFactors, current($primes));
+                //...keep adding current to prime factors
+                array_push($primeFactors, $prime);
                 //divide out current from $target
-                $target /= current($primes);
-                //reset $primes
-                reset($primes);
+                $target /= $prime;
+                echo("Prime factor: ".$prime."\n");
+            }
 
-            } else  //if this prime is NOT a factor of target...
-            {
-                //next $prime
-                next($primes);
+//            echo("Target: ".$target."\n");
+//            echo("Prime: ".$prime."\n");
+            $prime = $this->next_prime($prime);
+
+            if($target == 1){
+                break;
             }
         }
-
-        if($this->is_prime($target))
-        {
+        if($this->is_prime(($target))){
             array_push($primeFactors, $target);
         }
 
