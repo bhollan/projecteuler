@@ -60,9 +60,11 @@ class Primes
         return $candidate;
     }
 
-    public function getPrimeFactors($target)
+    public function getPrimeFactors($target, $logging = false)
     {
-        echo("Starting Prime Factorization of ".$target."\n");
+        if($logging){
+            echo("Starting Prime Factorization of ".$target."\n");
+        }
         $primeFactors = [];
         $prime = 2;
 
@@ -75,7 +77,9 @@ class Primes
                 array_push($primeFactors, $prime);
                 //divide out current from $target
                 $target /= $prime;
-                echo("Prime factor: ".$prime."\n");
+                if($logging){
+                    echo("Prime factor: ".$prime."\n");
+                }
             }
 
 //            echo("Target: ".$target."\n");
