@@ -60,7 +60,7 @@ class Primes
         return $candidate;
     }
 
-    public function getPrimeFactors($target, $logging = false)
+    public function get_prime_factors($target, $logging = false)
     {
         if($logging){
             echo("Starting Prime Factorization of ".$target."\n");

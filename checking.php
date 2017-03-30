@@ -13,9 +13,9 @@ $p = new Primes();
 echo("There are ".count($p->firstPrimes)." primes\n");
 
 
-//$primeFactors = $p->getPrimeFactors(13195);
-$primeFactors = $p->getPrimeFactors(131953445);
-//$primeFactors = $p->getPrimeFactors(600851475143);
+//$primeFactors = $p->get_prime_factors(13195);
+$primeFactors = $p->get_prime_factors(131953445);
+//$primeFactors = $p->get_prime_factors(600851475143);
 
 //echo(var_dump($primeFactors));
 echo("Largest Prime Factor: ".max($primeFactors)."\n");

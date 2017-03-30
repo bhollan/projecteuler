@@ -9,7 +9,6 @@
     "require": {
     },
     "require-dev": {
-        "phpspec/phpspec": "^3.2",
-        "phpunit/phpunit": "^6.0"
+        "mockery/mockery": "dev-master"
     }
 }
