@@ -7,22 +7,25 @@ var run = require('gulp-run');
 var notify = require('gulp-notify');
 
 gulp.task('test', function() {
-    gulp.src('spec/*.php')
-        .pipe(run('clear'))
-        .pipe(phpunit('', { notify: true }))
-        .on('error', notify.onError({
-            title: 'Dangit',
-            message: 'Your tests failed!',
-            icon: __dirname + '/fail.png'
-        }))
-        .pipe(notify({
-            title: 'Success',
-            message: 'All tests have returned green!'
-        }));
+    gulp.src('test/*.php')
+        // .pipe(run('clear'))
+        //'', { notify: true }
+        .pipe(phpunit())
+        .on('error', function(){})
+        //     notify.onError({
+        //     title: 'Dangit',
+        //     message: 'Your tests failed!',
+        //     icon: __dirname + '/fail.png'
+        // }))
+        // .pipe(notify({
+        //     title: 'Success',
+        //     message: 'All tests have returned green!',
+        //     onLast: true
+        // }));
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['spec/**/*.php', 'src/**/*.php'], ['test']);
+    gulp.watch(['test/**/*.php', 'src/**/*.php'], {debounceDelay: 2000}, ['test']);
 });
 
 gulp.task('default', ['test', 'watch']);
