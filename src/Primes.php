@@ -96,4 +96,16 @@ class Primes
 
         return $primeFactors;
     }
+
+    public function is_coprime($a, $b){
+        if($this->is_prime($a) && $this->is_prime($b)){
+            return true;
+        }
+        $a_primes = $this->get_prime_factors($a);
+        $b_primes = $this->get_prime_factors($b);
+        if(count(array_intersect($a_primes, $b_primes))==0){
+            return true;
+        }
+        return false;
+    }
 }

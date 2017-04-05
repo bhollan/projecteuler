@@ -67,4 +67,20 @@ class PrimesTest extends TestCase
         $result = $this->p->get_prime_factors(654321);
         $this->assertEquals([3, 218107], $result);
     }
+
+    public function testCanCheckIfPairIsCoprime(){
+        $this->assertTrue($this->p->is_coprime(2,3));
+        $this->assertTrue($this->p->is_coprime(3,5));
+        $this->assertTrue($this->p->is_coprime(12,13));
+        $this->assertTrue($this->p->is_coprime(101,24));
+        $this->assertTrue($this->p->is_coprime(1000,81));
+    }
+
+    public function testCanCheckIfPairIsNotCoprime(){
+        $this->assertFalse($this->p->is_coprime(2,4));
+        $this->assertFalse($this->p->is_coprime(9,27));
+        $this->assertFalse($this->p->is_coprime(64,32));
+        $this->assertFalse($this->p->is_coprime(10,100));
+        $this->assertFalse($this->p->is_coprime(105,429));
+    }
 }
